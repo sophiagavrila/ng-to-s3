@@ -45,3 +45,84 @@ artifacts:
 <br>
 
 2. Save and commit your code to your repository.
+
+## Step 2: Create an AWS S3 Bucket
+
+1. Go to aws.com and search for **"S3 Bucket"** > Click **"Create Bucket"** > Give it a name (it must be unique).
+
+2. Make sure you *uncheck* the checkbox next to **"Block *all* public access"** > acknowledge the warning below.
+
+<br>
+
+<img src="imgs/block.png">
+
+</br>
+
+3. Scroll donwn and click **Create Bucket** you will see that it has successfully been created on your S3 dashboard.
+
+<br>
+
+## Step 3: Enable Static Web Hosting in your S3 Bucket
+
+1. Click on your bucket > underneath **Properties**, scroll down to **Static Website Hosting** > Click **Edit**. Currently this is disabled.  We need to change that.
+
+2. Click **Enable** > Make sure "Hosting type" is set to "Host a static website".
+
+3. Under **Index document** type `index.html`.  This is the name of the single page rendered in our Angular Single Page Application.
+
+4. Click **Save Changes**.
+
+5. Scroll back up to the top and click **Permissions** > Scroll Down, and next to **Bucket policy** click **Edit**.
+
+6. If you navigate to the AWS documentation, you can find an [example permissions policy for hosting a Static website with S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteAccessPermissionsReqd.html).  Copy and paste the example policy into your **Bucket Policy Configuration**.
+
+7. Replace the `"Resource"` property with the **Bucket ARN** copied from above.
+
+<br>
+
+<img src="imgs/policy1.png">
+
+</br>
+
+8. Click **Save Changes**. Your Bucket now has public access.
+
+9. Go back to the **Properties** section > Scroll down to the bottom of the page under **Static webstie hosting**.  There you will see the *Bucket website endpoint*.
+
+<br>
+
+<img src="imgs/site.png">
+
+</br>
+
+*If you click that link, you'll get a 404 error simply because we haven't uploaded anything to be hosted, especially not an `index.html` page.*
+
+<br>
+
+## Step 3: Configure CodePipeline: Add Source
+> *First, you will need to add the source code which will feed into the pipeline and trigger a build on commit.*
+
+1. Search for CodePipeline on AWS > Click **Create Pipeline**.
+
+2. Enter a Pipeline name and click next (the new service role should be generated automatically) > click next.
+
+3. **Add source stage:** Under source provider select **GitHub (Version 2)**.
+
+4. Click the box that says **Connect to GitHub** > Give the connection a name > Click Connect to GItHub > Click **Install a new app**.
+
+5. Select the organization to connect to > clcik Configure > select the repository with your Angular source code and click Save > Click Connect when you're brought back to the previous popup window.
+
+6. Select your *Repository name* & *branch* > Click Next.
+
+<br>
+
+## Step 4: Setup Build Stage of CodePipeline
+
+1. Under Build Provide, select AWS CodeBuild > Click the box below that says **Create project**.
+
+2. Give it a name >  under  *Managed Image* select **Amazon Linux 2** > Under Runtime(s), select **Standard** >  under *Image* select `aws/codebuild/amazonlinux2-x86_64-standard:3.0` > *Environment Type* is **Linux**
+
+3. Under **Buildspec**, make sure *Use a buildspec file* is checked.  Under *buildspec name* write **buildspec.yml**. Make sure CloudWatch logs is checked > Click **Continue to CodePipeline**.
+
+<br>
+
+## Step 5: Add S3 Bucket URL Environment Variable 
