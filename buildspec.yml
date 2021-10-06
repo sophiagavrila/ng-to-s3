@@ -1,14 +1,3 @@
-# How to Deploy This Angular App
-*This is a step-by-step guide on how to deploy this app through AWS CodePipeline to an S3 bucket*
-
-## Step 1: Add the  `buildspec.yml` file
-
-1. Right click on the root directory of your Angular project > make a new file called `buildspec.yml`.  
-> *This will be used by AWS CodeBuild in the pipeline to generate the deployable artifact by building it from your source code:*
-
-<br>
-
-```yml
 version: 0.2
 
 env:
@@ -40,8 +29,3 @@ artifacts:
         # ready to be placed on a server and ready to be visited.
     base-directory: 'dist*'
     discard-paths: yes
-```
-
-<br>
-
-2. Save and commit your code to your repository.
