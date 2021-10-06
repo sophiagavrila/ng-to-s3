@@ -21,7 +21,7 @@ phases:
   install:
     runtime-versions:
         # We need node to install all the dependencies and built the distributable artifact
-        nodejs: 14
+        nodejs: 12
     commands:
         - echo Installing source NPM dependencies...
         - npm install
@@ -152,4 +152,10 @@ artifacts:
 <br>
 
 ## Step 7: Commit, Build, Deploy! :tada:
-*Your 
+*Your pipelein should begin running with the source code that you've supplied it with.  Scroll to the bottom and click the link that the deploy stage directs you to to see your hosted web application!.*
+
+<br>
+
+<img src="imgs/success.png">
+
+<br>
