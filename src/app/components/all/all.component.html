@@ -1,0 +1,29 @@
+<div>
+    <div>
+        <h2 class="card-header text-center">{{ title }}</h2>
+    </div>
+
+    <div class="card-body">
+
+        <ul *ngFor="let u of users" class="list-group-item">
+            <!-- the "heroes" part of our *ngFor directive represents the heores array in our .ts file.
+                 the "h" represents each individual object within the array -->
+
+            <li class=list-group-item>Id : {{ u.id }} </li>
+            <li class=list-group-item>First Name: {{ u.firstName }} </li>
+            <li class=list-group-item>Last Name: {{ u.lastName }}</li>
+            <li class=list-group-item>Username: {{ u.username}}</li>
+            <!-- <strong>Has Address?</strong>: {{ (u.addresses.length() > 0) ? 'Yes' : 'No' }} Here I'm using a ternary operator -->
+
+            </ul>
+
+        <div>
+            <button class="btn btn-primary btn-center" (click)="findAllUsersFromService()">Fetch Users!</button>
+        </div>
+
+        <div *ngIf="users.length == 0">
+            {{ clientMessage.message }}
+        </div>
+
+    </div>
+</div>

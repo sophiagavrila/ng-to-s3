@@ -6,6 +6,12 @@ export const environment = {
   production: false
 };
 
+// capture the server host name and export the protocol + host
+const hostname = window.location.hostname;
+export const hostURL = `http://${hostname}`;
+
+export const awsUrl = `http://api-env.eba-udukpxjr.us-east-2.elasticbeanstalk.com/`
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
