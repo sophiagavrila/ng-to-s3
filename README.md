@@ -126,3 +126,30 @@ artifacts:
 <br>
 
 ## Step 5: Add S3 Bucket URL Environment Variable 
+
+1. Back in the build stage, click **Add environment variable**.  Here we will provide the value for `S3_BUCKET` which is referenced in your `build.yml` file.
+
+2. Type `S3_BUCKET` under *Name*, and for *Value* paste the ARN which you grab from the Properties section of your S3 bucket's dashboard.  It lookd like: `arn:aws:s3:::angular-bucket-msg`. Keeep the type as `Plaintext`.
+
+<br>
+
+<img src="imgs/arn.png">
+
+<br>
+
+3. Click Next.
+
+<br>
+
+## Step 6: Add Deploy Stage to CodePipeline
+
+1. Under *Deploy provider*, select **Amazon S3**
+
+2. Under *Bucket*, select your Bucket.
+
+3. Make sure to check **Extract file before deploy** :exclamation: > Click Next.
+
+<br>
+
+## Step 7: Commit, Build, Deploy! :tada:
+*Your 
