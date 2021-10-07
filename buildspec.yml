@@ -10,7 +10,7 @@ phases:
   install:
     runtime-versions:
         # We need node to install all the dependencies and built the distributable artifact
-        nodejs: 14.15
+        nodejs: 10
     commands:
         - echo Installing source NPM dependencies...
         - npm install
@@ -28,4 +28,4 @@ artifacts:
         # The CLI will then output the files in the dist/your-project-name folder, 
         # ready to be placed on a server and ready to be visited.
     base-directory: 'dist*'
-    discard-paths: yes
+    discard-paths: no
