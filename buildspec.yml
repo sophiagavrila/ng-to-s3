@@ -29,4 +29,4 @@ artifacts:
         # The CLI will then output the files in the dist/your-project-name folder, 
         # ready to be placed on a server and ready to be visited.
     base-directory: 'dist*'
-    discard-paths: no
+    discard-paths: yes
