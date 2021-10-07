@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class MainComponent implements OnInit {
 
   title = "User Portal"
-  image = "/api-ui/assets/network.png"
+  image = "./api-ui/assets/network.png"
+  test = "this is a test"
 
   constructor() { }
 
