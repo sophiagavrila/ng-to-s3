@@ -58,7 +58,11 @@ artifacts:
 
 </br>
 
-3. Scroll donwn and click **Create Bucket** you will see that it has successfully been created on your S3 dashboard.
+3. Enable Versioning.
+
+4. Under Advance Settings, Enable Encyrption and select **Amazon S3 key (SSE-S3)**
+
+4. Scroll donwn and click **Create Bucket** you will see that it has successfully been created on your S3 dashboard.
 
 <br>
 
