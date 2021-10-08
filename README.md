@@ -47,6 +47,10 @@ artifacts:
 
 2. Save and commit your code to your repository.
 
+3. In the terminal of the root direcotry of your Angular project run `ng build --prod`.  The `dist/` folder has now been created.
+
+<br>
+
 ## Step 2: Create an AWS S3 Bucket
 
 1. Go to aws.com and search for **"S3 Bucket"** > Click **"Create Bucket"** > Give it a name (it must be unique).
@@ -60,8 +64,6 @@ artifacts:
 </br>
 
 3. Enable Versioning.
-
-4. Under Advance Settings, Enable Encyrption and select **Amazon S3 key (SSE-S3)**
 
 4. Scroll donwn and click **Create Bucket** you will see that it has successfully been created on your S3 dashboard.
 
@@ -90,6 +92,8 @@ artifacts:
 </br>
 
 8. Click **Save Changes**. Your Bucket now has public access.
+
+9. Go to 
 
 9. Go back to the **Properties** section > Scroll down to the bottom of the page under **Static webstie hosting**.  There you will see the *Bucket website endpoint*.
 
@@ -126,7 +130,7 @@ artifacts:
 
 2. Give it a name >  under  *Managed Image* select **Amazon Linux 2** > Under Runtime(s), select **Standard** >  under *Image* select `aws/codebuild/amazonlinux2-x86_64-standard:3.0` > *Environment Type* is **Linux**
 
-3. Under **Buildspec**, make sure *Use a buildspec file* is checked.  Under *buildspec name* write **buildspec.yml**. Make sure CloudWatch logs is checked > Click **Continue to CodePipeline**.
+3. Under **Buildspec**, make sure *Use a buildspec file* is checked.  Under *buildspec name* write **buildspec.yml**. Make sure CloudWatch logs is checked > Make sure S3 logs is checked > Click **Continue to CodePipeline**. 
 
 <br>
 
@@ -134,13 +138,7 @@ artifacts:
 
 1. Back in the build stage, click **Add environment variable**.  Here we will provide the value for `S3_BUCKET` which is referenced in your `build.yml` file.
 
-2. Type `S3_BUCKET` under *Name*, and for *Value* paste the ARN which you grab from the Properties section of your S3 bucket's dashboard.  It lookd like: `arn:aws:s3:::angular-bucket-msg`. Keeep the type as `Plaintext`.
-
-<br>
-
-<img src="imgs/arn.png">
-
-<br>
+2. Type `S3_BUCKET` under *Name*, and for *Value* paste the static web hosting url from the bottom of the Properties section of your S3 bucket's dashboard. Keeep the type as `Plaintext`.
 
 3. Click Next.
 
