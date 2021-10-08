@@ -9,12 +9,13 @@
 <br>
 
 ```yml
+# Do not change version. This is the version of aws buildspec, not the version of your buldspec file.
 version: 0.2
 
 env:
     variables:
         CACHE_CONTROL: "86400"
-        S3_BUCKET: "{{s3_bucket_url}}"
+        S3_BUCKET: "{{S3_BUCKET}}"
         # This is the folder where the "built" version of your src code will go
         BUILD_FOLDER: "dist"
 phases:
